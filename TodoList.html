@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style id="ani"></style>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        #placeholder{
+            font-size:16px;
+            width:44%;
+            padding:18px;
+            /* border: none; */
+            border-radius:5px;
+            
+            
+        }
+        .btn{
+          padding:14px;
+          background-color: darkgray;
+          cursor: pointer;
+          border-radius:15px;
+          width:6%;
+          font-size:17px;
+          float: right;
+          margin-right:35%;
+        } 
+        .btn:hover {
+          background-color:green;
+        }
+          .container{
+           margin-top:3%;
+           
+            border :1px solid black;
+            padding:30px;
+            background-color:rgb(245, 12, 12);
+        }
+       
+      
+     ul li {
+       cursor: pointer;
+        padding: 16px 30px ;
+        list-style-type: none;
+         background:lightgrey; 
+        font-size: 20px;
+        border:1px solid black;
+        
+        
+        
+
+      }
+       ul li:hover {
+         background:wheat;
+       }  
+    .odd{
+        background-color:lightgray;
+     }
+     .even{
+        background-color:white;
+     }
+    .dlete {
+        float: right;
+        background:red;
+        border:none;
+        font-size:14px;
+        padding:4px;
+        cursor:pointer;
+    }
+    .edit {
+        float: right;
+        background:green;
+        border:none;
+        font-size:14px;
+        padding:4px;
+    }
+
+   .spandate{
+   
+     float:right;
+     margin-right:10px;
+    
+   }
+  .head{
+    margin-left:450px;
+    margin-top:40px;
+  }
+  input[type=date]{
+  
+    height:57px;
+    font-size:18px;
+    border-radius:10px;
+    
+  }
+
+    </style>
+</head>
+<body>
+    <h1 class="head"><u>TODO LIST</u></h1>
+    
+    <div class="container">
+    <input type="text" id="placeholder" placeholder="Add text.....">
+    <button class="btn" onclick="add() ">Add</button> 
+    <input type="date" id="day">
+    
+</div>
+    <!-- <ul id="myul">
+        <li>task1</li>
+        <li>task2</li>
+        <li>task3</li>
+    </ul> -->
+
+    <script>
+        // let i=0;
+        function add(){
+        var Div=document.createElement("div")
+          Div.className="mydiv"
+        var ul=document.createElement("ul")
+        var li=document.createElement("li")
+        var SPAN=document.createElement("SPAN")
+        SPAN.className="spandata"
+
+       
+        
+        var delet =document.createElement("button")
+        delet.className="dlete"
+        li.appendChild(delet)
+        var text1=document.createTextNode("delete")
+        delet.appendChild(text1)
+        var edit =document.createElement("button")
+        edit.className="edit"
+       
+        var stopedit=document.createElement("button")
+        stopedit.addEventListener("click",function stopedited(){
+            SPAN.contentEditable=false;
+            stopedit.style.display="none"
+            edit.style.display="block"
+            
+        })
+        stopedit.className="edit"
+        stopedit.style.display="none"
+        var text3=document.createTextNode("stopedit")
+        li.appendChild(stopedit)
+        stopedit.appendChild(text3)
+        edit.addEventListener("click",function edited(){
+            SPAN.contentEditable=true;
+           
+            edit.style.display="none"
+            stopedit.style.display="block";
+            
+        })
+        li.appendChild(edit)
+        var text2=document.createTextNode("edit")
+        edit.appendChild(text2)
+        // i++;
+        // if((i%2)==0)
+        // {
+        //     li.className="even";}
+        // else
+        // {
+        //     li.className="odd";
+        // }
+        var inputvalue = document.getElementById("placeholder").value;
+        var text = document.createTextNode(inputvalue);
+        var dat=document.getElementById("day").value;
+        SPAN.appendChild(text)
+       
+        li.appendChild(SPAN)
+       //for input date
+       var spn=document.createElement("span")
+          spn.className="spandate"
+        spn.appendChild(document.createTextNode(document.getElementById("day").value))
+        li.appendChild(spn)
+       
+        Div.appendChild(ul)
+        document.body.appendChild(Div)
+        if(inputvalue==""||!dat){
+          alert("write something in inputbox!!")  
+        }
+        else{
+            ul.appendChild(li);
+            
+            document.getElementById("placeholder").value = "";
+            var current = document.querySelectorAll(".dlete");
+         for(var i=0; i<current.length; i++){
+         current[i].onclick = function(){
+              this.parentNode.remove();
+         }
+        
+            }
+        }
+      
+  }
+       
+        
+    
+
+    </script>
+</body>
+</html>
